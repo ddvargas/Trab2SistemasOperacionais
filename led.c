@@ -9,16 +9,19 @@
 
 const int  NUM_POSICOES_FLOAT = 16;
 
-char *floatToString(float num){
-    char *str = malloc(NUM_POSICOES_FLOAT * sizeof(char));
+/**
+ * Função que converte um float para uma string
+ * @param num numero em ponto flutuante a ser convertido
+ * @param str ponteiro para o vetor de carcteres no qual serão colocados os caracteres do float
+ */
+void floatToString(float num, char str[]){
     sprintf(str, "%f", num);
-
-    return str;
 }
+
+
 
 int main(int argc, char *args[]){
     float voltagem = atof(args[0]);
-
 
     printf("Eu sou o LED %d, filho de %d e estou: ", getpid(), getppid());
     printf("Recebi o valor %f na voltagem: %f", voltagem);
