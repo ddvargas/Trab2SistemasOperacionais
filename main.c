@@ -1,33 +1,36 @@
 #include <stdio.h>
 #include <unistd.h>
-#include <errno.h>
+//#include <string.h>
 #include <stdlib.h>
 #include <sys/wait.h>
 
 const int NUM_POSICOES_FLOAT = 16;
 
-char *floatToString(float num){
-    char *str = malloc(NUM_POSICOES_FLOAT * sizeof(char));
-    sprintf(str, "%f", num);
 
-    return str;
+/**
+ * Função que converte um float para uma string
+ * @param num numero em ponto flutuante a ser convertido
+ * @return ponteiro da string
+ */
+void floatToString(float num, char str[]){
+    sprintf(str, "%f", num);
 }
+
+
 
 int main() {
     //eu sou a bateria, preciso criar dois processos nó e passar a altura e a voltagem/2
     float voltagem = 0;
-    char *strVoltagem;
+    char strVoltagem[NUM_POSICOES_FLOAT];
     pid_t no1, no2;
 
     printf("Defina a voltagem da bateria: ");
     scanf("%f", &voltagem);
 
+    floatToString(voltagem, strVoltagem);
+    printf("Valor convertido pra string: %s", strVoltagem);
 
 
-    printf("Valor convertido pra string: %s", floatToString(voltagem));
-
-
-    sleep(6);
     no1 = fork();
     if (no1 < 0){//erro
         perror("Erro ao criar processo do primeiro nó");
