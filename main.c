@@ -10,7 +10,7 @@ const int NUM_POSICOES_FLOAT = 16;
 /**
  * Função que converte um float para uma string
  * @param num numero em ponto flutuante a ser convertido
- * @return ponteiro da string
+ * @param str ponteiro para o vetor de carcteres no qual serão colocados os caracteres do float
  */
 void floatToString(float num, char str[]){
     sprintf(str, "%f", num);
@@ -27,16 +27,13 @@ int main() {
     printf("Defina a voltagem da bateria: ");
     scanf("%f", &voltagem);
 
-    floatToString(voltagem, strVoltagem);
-    printf("Valor convertido pra string: %s", strVoltagem);
-
-
+    floatToString(voltagem/2, strVoltagem);
     no1 = fork();
     if (no1 < 0){//erro
         perror("Erro ao criar processo do primeiro nó");
         exit(1);
     } else if (no1 == 0){ //filho
-        //aqui trocar o código do filho para um processo nó passando a altura da arvore e a voltagem/2
+        // faz a troca do das instruções para instruções de nodo
         execl("nodo", strVoltagem, NULL);
     } else {
         //criar outro nó
@@ -56,6 +53,6 @@ int main() {
     }
 
 
-    printf("Encerrando execução do programa principal\n");
+    printf("\nEncerrando execução do programa principal\n");
     exit(0);
 }

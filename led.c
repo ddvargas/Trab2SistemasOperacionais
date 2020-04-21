@@ -24,7 +24,6 @@ int main(int argc, char *args[]){
     float voltagem = atof(args[0]);
 
     printf("Eu sou o LED %d, filho de %d e estou: ", getpid(), getppid());
-    printf("Recebi o valor %f na voltagem: %f", voltagem);
 
     //testar a voltagem
     if (voltagem < 10){
