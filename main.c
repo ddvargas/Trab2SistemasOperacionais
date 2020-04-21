@@ -11,26 +11,33 @@
 
 const int NUM_POSICOES_FLOAT = 16;
 
-
+/**
+ * Realiza as validaçẽos para a entrada da voltagem
+ * @param voltagem informada
+ * @return true se tudo ok, senão false
+ */
 bool validaVoltagem(float voltagem);
 
-bool validaAltura(int arvore);
+/**
+ * Realiza as validações necessárias para a altura da altura
+ * @param altura altura
+ * @return true se tudo ok, senão false
+ */
+bool validaAltura(int altura);
 
 /**
  * Função que converte um float para uma string
  * @param num numero em ponto flutuante a ser convertido
  * @param str ponteiro para o vetor de carcteres no qual serão colocados os caracteres do float
  */
-void floatToString(float num, char str[]){
-    sprintf(str, "%f", num);
-}
+void floatToString(float num, char str[]);
 
 
 
 int main() {
     //eu sou a bateria, preciso criar dois processos nó e passar a altura e a voltagem/2
     float voltagem = 0;
-    char strVoltagem[NUM_POSICOES_FLOAT];
+    char strVoltagem[] = {};
     char strAltura[] = {};
     pid_t no1, no2;
     int altura_arvore;
@@ -66,8 +73,6 @@ int main() {
 
     if (altura_arvore-1 > 1){
         //criar nos
-
-        printf("Bateria Criando novos nós");
 
         no1 = fork();
         if (no1 < 0){//erro
@@ -124,10 +129,14 @@ int main() {
     exit(0);
 }
 
-bool validaAltura(int arvore) {
-    return arvore > 0 ? true : false;
+bool validaAltura(int altura) {
+    return altura > 0 ? true : false;
 }
 
 bool validaVoltagem(float voltagem) {
     return  voltagem > -1 ? true : false;
+}
+
+void floatToString(float num, char str[]){
+    sprintf(str, "%f", num);
 }
